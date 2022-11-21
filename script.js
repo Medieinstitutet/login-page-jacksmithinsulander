@@ -11,6 +11,10 @@ let elements = [
 	},
 	{
 		"elementPage": "startpage",
+		"elementType": "input"
+	},
+	{
+		"elementPage": "startpage",
 		"elementType": "div"
 	}
 ]
@@ -20,12 +24,20 @@ let headerContainer = document.getElementById("headerContainer");
 const hamburgerTimes = 3;
 
 function addHamburger() {
-	let elementName = document.createElement(elements[0].elementType);
-	elementName.className = "header__hamburger";
+	let hamburger = document.createElement(elements[0].elementType);
+	hamburger.className = "header__hamburger";
+	let hamburgerToggle = document.createElement(elements[1].elementType);
+	hamburgerToggle.className = "header__hamburger--toggle";
+	hamburgerToggle.type = "checkbox"
+	let hamburgerDropDown = document.createElement(elements[2].elementType);
+	hamburgerDropDown.className = "header__hamburger--dropdown";
+	hamburgerDropDown.insertAdjacentHTML("afterbegin", "Login!");
 	for(var i = 0; i < hamburgerTimes; i++) {
-		elementName.insertAdjacentHTML("afterbegin", "<span class='lines'></span>");
+		hamburger.insertAdjacentHTML("afterbegin", "<span class='lines'></span>");
 	}
-	headerContainer.appendChild(elementName);
+	headerContainer.appendChild(hamburgerToggle);
+	headerContainer.appendChild(hamburger);
+	headerContainer.appendChild(hamburgerDropDown);
 }
 
 addHamburger();
