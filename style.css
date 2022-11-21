@@ -1,0 +1,53 @@
+*{
+	box-sizing:border-box;
+}
+body{
+	background-image:url("3.jpg");
+	background-size:cover;
+	margin:0;
+}
+.header{
+	background-color: #830e10;
+	opacity:0.8;
+	color:#e9e5e1;
+}
+
+.header__hamburger{
+	width:35px;
+	height:35px;
+	background:transparent;
+	border:0;
+	position:fixed;
+	right:20px;
+	top:20px;
+	z-index:2;
+	pointer-events:none;
+}
+
+.header__hamburger .lines{
+	display:block;
+	width:25px;
+	height:3px;
+	background-color:#e9e5e1;
+	border-radius:3px;
+	margin-bottom:4px;
+	position:relative;
+	right:0;
+	transition:all 0.3s ease-in-out;
+}
+
+.header, .footer{
+	display:flex;
+	align-items: center;
+}
+
+.footer{
+	background-color: #1f3102;
+	opacity:0.8;
+	color:#e9e5e1;
+	position:fixed;
+	left:0;
+	bottom:0;
+	width:100%;
+	justify-content:center;
+}
