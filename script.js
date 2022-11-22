@@ -33,8 +33,15 @@ let loginPageArray = [
 	{
 		"elementTag": "form",
 		"elementClassName": "logincontainer__form",
-		"elementInputFields": "Wonderland User Login:",
-		"elementPurpose": "loginForm"
+		"elementPurpose": "loginForm",
+		"elementInputFields": [
+			"<button id='newUserBtn'>Add New User?</button>",
+			"<button type='submit' id='loginBtn'>Log In!</button>",
+			"<input type='text' id='getPassword'></input>",
+			"<label>Password</label>",
+			"<input type='text' id='getUserName'></input>",
+			"<label>User Name</label>"
+		]	
 	}
 ]
 
@@ -58,6 +65,11 @@ function addHamburger(hamElements, container) {
 				break;
 			case "hamburgerBtnCheck":
 				element.type = hamElements[i].elementType;
+				break;
+			case "loginForm":
+				for (fields in hamElements[i].elementInputFields) {
+					element.insertAdjacentHTML("afterbegin", hamElements[i].elementInputFields[fields]);
+				}
 				break;
 			default:
 				element.insertAdjacentHTML("afterbegin", hamElements[i].elementText);	
