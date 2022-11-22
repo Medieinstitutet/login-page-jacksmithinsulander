@@ -95,7 +95,7 @@ function domManipulation(elementArray, container) {
 					element.id = "toLogin";
 				} else if (localStorage.getItem("loginState") === "isLoggedIn") {
 					element.innerHTML = "Log out!";
-					element.id = "toLogin";
+					element.id = "toLogout";
 				}
 				break;
 			case "loginForm":
@@ -119,6 +119,11 @@ function domManipulation(elementArray, container) {
 function loggedIn() {
 	domManipulation(hamArray, headerContainer);
 	domManipulation(loggedInArray, contentContainer);
+	contentContainer.className = "content";
+	toLogout.addEventListener("click", () => {
+		localStorage.clear();
+		reloadLogInStatus(localStorage.getItem("loginState"));
+	})
 }
 
 function loggedOut() {
@@ -150,11 +155,6 @@ function reloadLogInStatus(loggInToken) {
 }
 
 reloadLogInStatus(localStorage.getItem("loginState"));
-
-//function logOutBtn(){
-//	localStorage.clear("state)"
-//	reloadLogInStatus
-//}
 
 //function addUserBtn() {
 	//load another dom with import fields, ending with an "addUserBtn"
