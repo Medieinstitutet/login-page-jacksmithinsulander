@@ -77,8 +77,6 @@ let headerContainer = document.getElementById("headerContainer");
 
 let contentContainer = document.getElementById("contentContainer");
 
-let user = "Ted Kazcynski";
-
 function domManipulation(elementArray, container) {
 	for (i in elementArray) {
 		let element = document.createElement(elementArray[i].elementTag);
@@ -101,7 +99,7 @@ function domManipulation(elementArray, container) {
 				let getPassword = document.getElementById("getPassword");
 				break;
 			case "greeting":
-				element.insertAdjacentHTML("afterbegin", elementArray[i].elementText + user);
+				element.insertAdjacentHTML("afterbegin", elementArray[i].elementText + localStorage.getItem("loggedInUser") );
 				break;
 			default:
 				element.insertAdjacentHTML("afterbegin", elementArray[i].elementText);	
@@ -123,6 +121,7 @@ function loggedOut() {
 		if (findUser && findUser.userPassword === getPassword.value) {
 			console.log("user found", findUser.username);
 			localStorage.setItem("loginState", "isLoggedIn");
+			localStorage.setItem("loggedInUser", findUser.username);
 			reloadLogInStatus(localStorage.getItem("loginState"));
 		} else {
 			console.log("error! wrong credentials!!!");
