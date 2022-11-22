@@ -1,82 +1,115 @@
-*{
-	box-sizing:border-box;
-}
-body{
-	background-image:url("3.jpg");
-	background-size:cover;
-	margin:0;
-}
-.header{
-	background-color: #830e10;
-	opacity:0.8;
-	color:#e9e5e1;
-}
-.header__title{
-	font-size:2.5em;
-	font-family:'Trebuchet MS', sans-serif;
-	margin:10px;
+* {
+  box-sizing: border-box;
 }
 
-.header__hamburger{
-	height:35px;
-	background:transparent;
-	border:0;
-	position:fixed;
-	right:20px;
-	top:20px;
-	z-index:2;
-	pointer-events:none;
+body {
+  background-image: url("3.jpg");
+  background-size: cover;
+  margin: 0;
 }
 
-.header__hamburger .lines{
-	display:block;
-	width:25px;
-	height:3px;
-	background-color:#e9e5e1;
-	border-radius:3px;
-	margin-bottom:4px;
-	position:relative;
-	right:0;
-	transition:all 0.3s ease-in-out;
+.header {
+  background-color: rgba(131, 14, 16, 0.8078431373);
+  color: #e9e5e1;
 }
 
-.header__hamburger--toggle{
-	position:fixed;
-	top:20px;
-	right:20px;
-	z-index:1;
-	width:35px;
-	height:35px;
-	opacity:0;
-	cursor:pointer;
-}
-.header__hamburger--dropdown{
-	position:fixed;
-	top:50px;
-	right:20px;
-	width:70px;
-	height:100px;
-	font-family: 'Trebuchet MS', sans-serif;
-	font-size:1.2em;
-	background-color:#e9e5e1;
-	color:#303a43;
-	padding:10px;
-	border-radius:10px;
+.header__title {
+  font-size: 2.5em;
+  font-family: "Trebuchet MS", sans-serif;
+  margin: 10px;
 }
 
-.header, .footer{
-	display:flex;
-	align-items: center;
+.header__hamburger {
+  height: 35px;
+  background: transparent;
+  border: 0;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 2;
+  pointer-events: none;
 }
 
-.footer{
-	background-color: #1f3102;
-	opacity:0.8;
-	color:#e9e5e1;
-	position:fixed;
-	left:0;
-	bottom:0;
-	width:100%;
-	justify-content:center;
-	font-family: 'Trebuchet MS', sans-serif;
+.header__hamburger .lines {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #e9e5e1;
+  border-radius: 3px;
+  margin-bottom: 4px;
+  position: relative;
+  right: 0;
+  transition: all 0.3s ease-in-out;
 }
+
+.header__hamburger--toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+  width: 35px;
+  height: 35px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.header__hamburger--dropdown {
+  position: fixed;
+  top: 50px;
+  right: 20px;
+  width: 70px;
+  height: 100px;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 1.2em;
+  background-color: #e9e5e1;
+  color: #303a43;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.header, .footer {
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  display: block;
+  position: relative;
+  max-width: 800px;
+  padding: 15px 30px;
+  margin: auto;
+  margin-top: 30px;
+  height: 80vh;
+  text-align: center;
+  font-family: "Trebuchet MS", sans-serif;
+  color: #303a43;
+}
+.content::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-image: url("paper.jpg");
+  background-size: cover;
+  background-position: top center;
+  box-shadow: inset 0 0 0 1000px rgba(254, 223, 176, 0.5333333333);
+  opacity: 0.8;
+  border-radius: 25px;
+  z-index: -1;
+}
+
+.footer {
+  background-color: #1f3102;
+  opacity: 0.8;
+  color: #e9e5e1;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  justify-content: center;
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+/*# sourceMappingURL=style.css.map */
