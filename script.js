@@ -7,12 +7,14 @@
 let hamArray = [
 	{
 		"elementTag": "button",
-		"elementClassName": "header__hamburger"
+		"elementClassName": "header__hamburger",	
+		"elementPurpose": "hamburgerBtn"
 	},
 	{
 		"elementTag": "input",
 		"elementClassName": "header__hamburger--toggle",
-		"elementType": "checkbox"
+		"elementType": "checkbox",
+		"elementPurpose": "hamburgerBtnCheck"
 		
 	},
 	{
@@ -24,18 +26,15 @@ let hamArray = [
 
 let loginPageArray = [
 	{
-		"elementTag": "div",
-		"elementClassName": "contentcontainer"
-	},
-	{
 		"elementTag": "h2",
-		"elementClassName": "contentcontainer__title",
+		"elementClassName": "logincontainer__title",
 		"elementText": "Wonderland User Login:"
 	},
 	{
 		"elementTag": "form",
-		"elementClassName": "contentcontainer__form",
-		"elementInputFields": "Wonderland User Login:"	
+		"elementClassName": "logincontainer__form",
+		"elementInputFields": "Wonderland User Login:",
+		"elementPurpose": "loginForm"
 	}
 ]
 
@@ -51,14 +50,17 @@ function addHamburger(hamElements, container) {
 	for (i in hamElements) {
 		let element = document.createElement(hamElements[i].elementTag);
 		element.className = hamElements[i].elementClassName;
-		if (hamElements[i].elementType) {
-			element.type = hamElements[i].elementType;
-		} else if (hamElements[i].elementText) {
-			element.insertAdjacentHTML("afterbegin", hamElements[i].elementText);
-		} else {
-			for(var j = 0; j < 3; j++) {
-				element.insertAdjacentHTML("afterbegin", "<span class='lines'></span>");
-			}
+			switch(hamElements[i].elementPurpose) {
+			case "hamburgerBtn":
+				for(var j = 0; j < 3; j++) {
+					element.insertAdjacentHTML("afterbegin", "<span class='lines'></span>");
+				}
+				break;
+			case "hamburgerBtnCheck":
+				element.type = hamElements[i].elementType;
+				break;
+			default:
+				element.insertAdjacentHTML("afterbegin", hamElements[i].elementText);	
 		}
 		container.appendChild(element);
 	}
