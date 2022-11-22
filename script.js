@@ -22,9 +22,32 @@ let hamArray = [
 	}
 ]
 
+let loginPageArray = [
+	{
+		"elementTag": "div",
+		"elementClassName": "contentcontainer"
+	},
+	{
+		"elementTag": "h2",
+		"elementClassName": "contentcontainer__title",
+		"elementText": "Wonderland User Login:"
+	},
+	{
+		"elementTag": "form",
+		"elementClassName": "contentcontainer__form",
+		"elementInputFields": "Wonderland User Login:"	
+	}
+]
+
+let loggedInArray = [
+
+]
+
 let headerContainer = document.getElementById("headerContainer");
 
-function addHamburger(hamElements) {
+let contentContainer = document.getElementById("contentContainer");
+
+function addHamburger(hamElements, container) {
 	for (i in hamElements) {
 		let element = document.createElement(hamElements[i].elementTag);
 		element.className = hamElements[i].elementClassName;
@@ -37,24 +60,26 @@ function addHamburger(hamElements) {
 				element.insertAdjacentHTML("afterbegin", "<span class='lines'></span>");
 			}
 		}
-		headerContainer.appendChild(element);
+		container.appendChild(element);
 	}
 }
 
-addHamburger(hamArray);
+addHamburger(hamArray, headerContainer);
 
+addHamburger(loginPageArray, contentContainer);
 
 function loggedIn() {
-	//insert all HTML for logged in welcome screen
+	//insert all HTML for logged in welcome screen. inlogged dom function 
 }
 
 function loggedOut() {
 	//insert all HTML for logged out welcome screen + button for getting to login screen
+	//outlogged dom function
 }
 
 function reloadLogInStatus(loggInToken) {
 	//if (loggInToken == loggedIn) {
-	//	loggedIn()
+	//	loggedIn() THIS COULD BE A SWITCH STATEMENT AS WELL
 //	} else {
 //		loggedOut()	
 //	}

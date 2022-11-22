@@ -11,6 +11,11 @@ body{
 	opacity:0.8;
 	color:#e9e5e1;
 }
+.header__title{
+	font-size:2.5em;
+	font-family:'Trebuchet MS', sans-serif;
+	margin:10px;
+}
 
 .header__hamburger{
 	height:35px;
@@ -45,6 +50,19 @@ body{
 	opacity:0;
 	cursor:pointer;
 }
+.header__hamburger--dropdown{
+	position:fixed;
+	top:50px;
+	right:20px;
+	width:70px;
+	height:100px;
+	font-family: 'Trebuchet MS', sans-serif;
+	font-size:1.2em;
+	background-color:#e9e5e1;
+	color:#303a43;
+	padding:10px;
+	border-radius:10px;
+}
 
 .header, .footer{
 	display:flex;
@@ -60,4 +78,5 @@ body{
 	bottom:0;
 	width:100%;
 	justify-content:center;
+	font-family: 'Trebuchet MS', sans-serif;
 }
