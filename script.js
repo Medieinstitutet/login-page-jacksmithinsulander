@@ -112,21 +112,26 @@ function domManipulation(elementArray, container) {
 			default:
 				element.innerHTML = elementArray[i].elementText;	
 		}
-		container.appendChild(element);
+		container.append(element);
 	}
 }
 
 function loggedIn() {
+	contentContainer.innerHTML = "";
+	headerContainer.innerHTML = "";
 	domManipulation(hamArray, headerContainer);
 	domManipulation(loggedInArray, contentContainer);
 	contentContainer.className = "content";
 	toLogout.addEventListener("click", () => {
 		localStorage.clear();
 		reloadLogInStatus(localStorage.getItem("loginState"));
+		contentContainer.className = "";
 	})
 }
 
 function loggedOut() {
+	contentContainer.innerHTML = "";
+	headerContainer.innerHTML = "";
 	domManipulation(hamArray, headerContainer);
 	let toLogin = document.getElementById("toLogin");
 	toLogin.addEventListener("click", () => {
@@ -154,7 +159,7 @@ function reloadLogInStatus(loggInToken) {
 	}
 }
 
-reloadLogInStatus(localStorage.getItem("loginState"));
+window.onload = reloadLogInStatus(localStorage.getItem("loginState"));
 
 //function addUserBtn() {
 	//load another dom with import fields, ending with an "addUserBtn"
