@@ -1,4 +1,4 @@
-let userArray = [
+let userAndPass = [
 	{
 		"username": "janne",
 		"userPassword": "test"
@@ -43,9 +43,9 @@ let loginPageArray = [
 		"elementClassName": "container__form",
 		"elementPurpose": "loginForm",
 		"elementInputFields": [
-			"<label class='container__form--labels'>User Name </label>",
+			"<label id='userLabel' class='container__form--labels'>User Name </label>",
 			"<input type='text' id='getUserName' class='container__form--inputs'></input><br><br>",
-			"<label class='container__form--labels'>Password </label>",
+			"<label id='passLabel' class='container__form--labels'>Password </label>",
 			"<input type='text' id='getPassword' class='container__form--inputs'></input><br><br>",
 			"<button type='button' id='loginBtn' class='container__form--buttons'>Log In!</button>",
 			"<button type='button' id='newUserBtn' class='container__form--buttons'>Add New User?</button>"
@@ -76,6 +76,13 @@ let headerContainer = document.getElementById("headerContainer");
 
 let contentContainer = document.getElementById("contentContainer");
 
+if (localStorage.getItem("usersString") === null) {
+	let userStringified = JSON.stringify(userAndPass);
+	localStorage.setItem("usersString", userStringified);
+}
+
+let userArray = JSON.parse(localStorage.getItem("usersString"));
+
 function domManipulation(elementArray, container) {
 	for (i in elementArray) {
 		let element = document.createElement(elementArray[i].elementTag);
@@ -103,6 +110,7 @@ function domManipulation(elementArray, container) {
 					element.innerHTML += elementArray[i].elementInputFields[fields];
 				}
 				let loginBtn = document.getElementById("loginBtn");
+				let newUserBtn = document.getElementById("newUserBtn");
 				let getUserName = document.getElementById("getUserName");
 				let getPassword = document.getElementById("getPassword");
 				break;
@@ -135,6 +143,7 @@ function loggedOut() {
 	domManipulation(hamArray, headerContainer);
 	let toLogin = document.getElementById("toLogin");
 	toLogin.addEventListener("click", () => {
+		contentContainer.innerHTML = "";
 		domManipulation(loginPageArray, contentContainer);
 		contentContainer.className = "content";
 		loginBtn.addEventListener("click", () => {
@@ -148,6 +157,14 @@ function loggedOut() {
 				console.log("error! wrong credentials!!!");
 			}
 		})
+		newUserBtn.addEventListener("click", () => {
+			console.log("tjenis");
+			document.getElementsByClassName("container__title")[0].innerHTML = "Add new user";
+			document.getElementById("userLabel").innerHTML = "New User Name: ";
+			document.getElementById("passLabel").innerHTML = "New Password: ";
+			newUserBtn.innerHTML = "Add New User!";
+			loginBtn.remove();
+		})
 	})
 }
 
@@ -160,7 +177,3 @@ function reloadLogInStatus(loggInToken) {
 }
 
 window.onload = reloadLogInStatus(localStorage.getItem("loginState"));
-
-//function addUserBtn() {
-	//load another dom with import fields, ending with an "addUserBtn"
-//}
