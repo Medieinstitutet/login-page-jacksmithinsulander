@@ -65,6 +65,11 @@ body {
   color: #303a43;
   padding: 10px;
   border-radius: 10px;
+  visibility: hidden;
+}
+
+.header__hamburger--toggle:checked + .header__hamburger--dropdown {
+  visibility: visible;
 }
 
 .header, .footer {

@@ -23,8 +23,7 @@ let hamArray = [
 		"elementTag": "input",
 		"elementClassName": "header__hamburger--toggle",
 		"elementType": "checkbox",
-		"elementPurpose": "hamburgerBtnCheck"
-		
+		"elementPurpose": "checkBox"		
 	},
 	{
 		"elementTag": "div",
@@ -87,14 +86,16 @@ function domManipulation(elementArray, container) {
 					element.insertAdjacentHTML("afterbegin", "<span class='lines'></span>");
 				}
 				break;
-			case "hamburgerBtnCheck":
+			case "checkBox":
 				element.type = elementArray[i].elementType;
 				break;
 			case "loginDropDown":
 				if (localStorage.getItem("loginState") === null) {
 					element.innerHTML = "Log in!";
+					element.id = "toLogin";
 				} else if (localStorage.getItem("loginState") === "isLoggedIn") {
 					element.innerHTML = "Log out!";
+					element.id = "toLogin";
 				}
 				break;
 			case "loginForm":
@@ -122,18 +123,22 @@ function loggedIn() {
 
 function loggedOut() {
 	domManipulation(hamArray, headerContainer);
-	domManipulation(loginPageArray, contentContainer);
-	loginBtn.addEventListener("click", () => {
-		let findUser = userArray.find(findUser => findUser.username === getUserName.value)
-		if (findUser && findUser.userPassword === getPassword.value) {
-			console.log("user found", findUser.username);
-			localStorage.setItem("loginState", "isLoggedIn");
-			localStorage.setItem("loggedInUser", findUser.username);
-			reloadLogInStatus(localStorage.getItem("loginState"));
-		} else {
-			console.log("error! wrong credentials!!!");
-		}
-	});
+	let toLogin = document.getElementById("toLogin");
+	toLogin.addEventListener("click", () => {
+		domManipulation(loginPageArray, contentContainer);
+		contentContainer.className = "content";
+		loginBtn.addEventListener("click", () => {
+			let findUser = userArray.find(findUser => findUser.username === getUserName.value)
+			if (findUser && findUser.userPassword === getPassword.value) {
+				console.log("user found", findUser.username);
+				localStorage.setItem("loginState", "isLoggedIn");
+				localStorage.setItem("loggedInUser", findUser.username);
+				reloadLogInStatus(localStorage.getItem("loginState"));
+			} else {
+				console.log("error! wrong credentials!!!");
+			}
+		})
+	})
 }
 
 function reloadLogInStatus(loggInToken) {
