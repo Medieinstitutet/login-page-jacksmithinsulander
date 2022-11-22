@@ -43,12 +43,12 @@ let loginPageArray = [
 		"elementClassName": "container__form",
 		"elementPurpose": "loginForm",
 		"elementInputFields": [
-			"<button type='button' id='newUserBtn' class='container__form--buttons'>Add New User?</button>",
-			"<button type='button' id='loginBtn' class='container__form--buttons'>Log In!</button>",
-			"<input type='text' id='getPassword' class='container__form--inputs'></input><br><br>",
-			"<label class='container__form--labels'>Password </label>",
+			"<label class='container__form--labels'>User Name </label>",
 			"<input type='text' id='getUserName' class='container__form--inputs'></input><br><br>",
-			"<label class='container__form--labels'>User Name </label>"
+			"<label class='container__form--labels'>Password </label>",
+			"<input type='text' id='getPassword' class='container__form--inputs'></input><br><br>",
+			"<button type='button' id='loginBtn' class='container__form--buttons'>Log In!</button>",
+			"<button type='button' id='newUserBtn' class='container__form--buttons'>Add New User?</button>"
 		]	
 	}
 ]
@@ -83,7 +83,7 @@ function domManipulation(elementArray, container) {
 			switch(elementArray[i].elementPurpose) {
 			case "hamburgerBtn":
 				for(var j = 0; j < 3; j++) {
-					element.insertAdjacentHTML("afterbegin", "<span class='lines'></span>");
+					element.innerHTML += "<span class='lines'></span>";
 				}
 				break;
 			case "checkBox":
@@ -100,17 +100,17 @@ function domManipulation(elementArray, container) {
 				break;
 			case "loginForm":
 				for (fields in elementArray[i].elementInputFields) {
-					element.insertAdjacentHTML("afterbegin", elementArray[i].elementInputFields[fields]);
+					element.innerHTML += elementArray[i].elementInputFields[fields];
 				}
 				let loginBtn = document.getElementById("loginBtn");
 				let getUserName = document.getElementById("getUserName");
 				let getPassword = document.getElementById("getPassword");
 				break;
 			case "greeting":
-				element.insertAdjacentHTML("afterbegin", elementArray[i].elementText + localStorage.getItem("loggedInUser") );
+				element.innerHTML = elementArray[i].elementText + localStorage.getItem("loggedInUser");
 				break;
 			default:
-				element.insertAdjacentHTML("afterbegin", elementArray[i].elementText);	
+				element.innerHTML = elementArray[i].elementText;	
 		}
 		container.appendChild(element);
 	}
