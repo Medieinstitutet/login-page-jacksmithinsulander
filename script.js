@@ -2,8 +2,6 @@
 
 //users object array med lösen + användarnamn
 
-//DOM arrays
-
 let hamArray = [
 	{
 		"elementTag": "button",
@@ -49,7 +47,8 @@ let loggedInArray = [
 	{
 		"elementTag": "h2",
 		"elementClassName": "container__title",
-		"elementText": "Welcome, "
+		"elementText": "Welcome, ",
+		"elementPurpose": "greeting"
 	},
 	{
 		"elementTag": "h3",
@@ -67,53 +66,61 @@ let headerContainer = document.getElementById("headerContainer");
 
 let contentContainer = document.getElementById("contentContainer");
 
-function addHamburger(hamElements, container) {
-	for (i in hamElements) {
-		let element = document.createElement(hamElements[i].elementTag);
-		element.className = hamElements[i].elementClassName;
-			switch(hamElements[i].elementPurpose) {
+let user = "Ted Kazcynski";
+
+function domManipulation(elementArray, container) {
+	for (i in elementArray) {
+		let element = document.createElement(elementArray[i].elementTag);
+		element.className = elementArray[i].elementClassName;
+			switch(elementArray[i].elementPurpose) {
 			case "hamburgerBtn":
 				for(var j = 0; j < 3; j++) {
 					element.insertAdjacentHTML("afterbegin", "<span class='lines'></span>");
 				}
 				break;
 			case "hamburgerBtnCheck":
-				element.type = hamElements[i].elementType;
+				element.type = elementArray[i].elementType;
 				break;
 			case "loginForm":
-				for (fields in hamElements[i].elementInputFields) {
-					element.insertAdjacentHTML("afterbegin", hamElements[i].elementInputFields[fields]);
+				for (fields in elementArray[i].elementInputFields) {
+					element.insertAdjacentHTML("afterbegin", elementArray[i].elementInputFields[fields]);
 				}
 				break;
+			case "greeting":
+				element.insertAdjacentHTML("afterbegin", elementArray[i].elementText + user);
+				break;
 			default:
-				element.insertAdjacentHTML("afterbegin", hamElements[i].elementText);	
+				element.insertAdjacentHTML("afterbegin", elementArray[i].elementText);	
 		}
 		container.appendChild(element);
 	}
 }
 
-addHamburger(hamArray, headerContainer);
-
-addHamburger(loggedInArray, contentContainer);
-
 function loggedIn() {
-	//insert all HTML for logged in welcome screen. inlogged dom function 
+	domManipulation(hamArray, headerContainer);
+	domManipulation(loggedInArray, contentContainer);
 }
 
 function loggedOut() {
-	//insert all HTML for logged out welcome screen + button for getting to login screen
-	//outlogged dom function
+	domManipulation(hamArray, headerContainer);
+	domManipulation(loginPageArray, contentContainer);
 }
+
+//if (localStorage.getItem("loggedIn") === null) {
+//	loggedOut();
+//} else if (localStorage.getItem("loggedIn") === "isLoggedIn") {
+//	loggedIn();
+//}
 
 function reloadLogInStatus(loggInToken) {
-	//if (loggInToken == loggedIn) {
-	//	loggedIn() THIS COULD BE A SWITCH STATEMENT AS WELL
-//	} else {
-//		loggedOut()	
-//	}
+	if (loggInToken === null) {
+		loggedOut();
+	} else if (loggInToken === "isLoggedIn") {
+		loggedIn();
+	}
 }
 
-//reloadLogInStatus(users);
+reloadLogInStatus(localStorage.getItem("loginState"));
 
 //loginBtn.addEventListener {
 //	for (i in users) {
