@@ -2,52 +2,51 @@
 
 //users object array med lösen + användarnamn
 
-//DOM array
+//DOM arrays
 
-let elements = [
+let hamArray = [
 	{
-		"elementPage": "startpage",
-		"elementType": "button"
+		"elementTag": "button",
+		"elementClassName": "header__hamburger"
 	},
 	{
-		"elementPage": "startpage",
-		"elementType": "input"
+		"elementTag": "input",
+		"elementClassName": "header__hamburger--toggle",
+		"elementType": "checkbox"
+		
 	},
 	{
-		"elementPage": "startpage",
-		"elementType": "div"
+		"elementTag": "div",
+		"elementClassName": "header__hamburger--dropdown",
+		"elementText": "Login!"
 	}
 ]
 
 let headerContainer = document.getElementById("headerContainer");
 
-const hamburgerTimes = 3;
-
-function addHamburger() {
-	let hamburger = document.createElement(elements[0].elementType);
-	hamburger.className = "header__hamburger";
-	let hamburgerToggle = document.createElement(elements[1].elementType);
-	hamburgerToggle.className = "header__hamburger--toggle";
-	hamburgerToggle.type = "checkbox"
-	let hamburgerDropDown = document.createElement(elements[2].elementType);
-	hamburgerDropDown.className = "header__hamburger--dropdown";
-	hamburgerDropDown.insertAdjacentHTML("afterbegin", "Login!");
-	for(var i = 0; i < hamburgerTimes; i++) {
-		hamburger.insertAdjacentHTML("afterbegin", "<span class='lines'></span>");
+function addHamburger(hamElements) {
+	for (i in hamElements) {
+		let element = document.createElement(hamElements[i].elementTag);
+		element.className = hamElements[i].elementClassName;
+		if (hamElements[i].elementType) {
+			element.type = hamElements[i].elementType;
+		} else if (hamElements[i].elementText) {
+			element.insertAdjacentHTML("afterbegin", hamElements[i].elementText);
+		} else {
+			for(var j = 0; j < 3; j++) {
+				element.insertAdjacentHTML("afterbegin", "<span class='lines'></span>");
+			}
+		}
+		headerContainer.appendChild(element);
 	}
-	headerContainer.appendChild(hamburgerToggle);
-	headerContainer.appendChild(hamburger);
-	headerContainer.appendChild(hamburgerDropDown);
 }
 
-addHamburger();
+addHamburger(hamArray);
 
 
 function loggedIn() {
 	//insert all HTML for logged in welcome screen
 }
-
-console.log("hello world");
 
 function loggedOut() {
 	//insert all HTML for logged out welcome screen + button for getting to login screen
