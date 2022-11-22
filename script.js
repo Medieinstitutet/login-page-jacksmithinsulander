@@ -29,7 +29,7 @@ let hamArray = [
 	{
 		"elementTag": "div",
 		"elementClassName": "header__hamburger--dropdown",
-		"elementText": "Login!"
+		"elementPurpose": "loginDropDown"
 	}
 ]
 
@@ -90,6 +90,13 @@ function domManipulation(elementArray, container) {
 			case "hamburgerBtnCheck":
 				element.type = elementArray[i].elementType;
 				break;
+			case "loginDropDown":
+				if (localStorage.getItem("loginState") === null) {
+					element.innerHTML = "Log in!";
+				} else if (localStorage.getItem("loginState") === "isLoggedIn") {
+					element.innerHTML = "Log out!";
+				}
+				break;
 			case "loginForm":
 				for (fields in elementArray[i].elementInputFields) {
 					element.insertAdjacentHTML("afterbegin", elementArray[i].elementInputFields[fields]);
@@ -146,9 +153,4 @@ reloadLogInStatus(localStorage.getItem("loginState"));
 
 //function addUserBtn() {
 	//load another dom with import fields, ending with an "addUserBtn"
-//}
-
-//loginBtn.addEventListener {
-	//edit local storrage with new object array, containing new user credentials
-//	if statement prompting an error if any of the fields are not filled in correctly
 //}
