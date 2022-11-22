@@ -1,6 +1,17 @@
-//local storage containgning token loggedIn or loggedOut
-
-//users object array med lösen + användarnamn
+let userArray = [
+	{
+		"username": "janne",
+		"userPassword": "test"
+	},
+	{
+		"username": "ted",
+		"userPassword": "industrialrevolution123"
+	},
+	{
+		"username": "satoshi",
+		"userPassword": "ciahoneypot"
+	},
+]
 
 let hamArray = [
 	{
@@ -33,8 +44,8 @@ let loginPageArray = [
 		"elementClassName": "container__form",
 		"elementPurpose": "loginForm",
 		"elementInputFields": [
-			"<button id='newUserBtn' class='container__form--buttons'>Add New User?</button>",
-			"<button type='submit' id='loginBtn' class='container__form--buttons'>Log In!</button>",
+			"<button type='button' id='newUserBtn' class='container__form--buttons'>Add New User?</button>",
+			"<button type='button' id='loginBtn' class='container__form--buttons'>Log In!</button>",
 			"<input type='text' id='getPassword' class='container__form--inputs'></input><br><br>",
 			"<label class='container__form--labels'>Password </label>",
 			"<input type='text' id='getUserName' class='container__form--inputs'></input><br><br>",
@@ -85,6 +96,9 @@ function domManipulation(elementArray, container) {
 				for (fields in elementArray[i].elementInputFields) {
 					element.insertAdjacentHTML("afterbegin", elementArray[i].elementInputFields[fields]);
 				}
+				let loginBtn = document.getElementById("loginBtn");
+				let getUserName = document.getElementById("getUserName");
+				let getPassword = document.getElementById("getPassword");
 				break;
 			case "greeting":
 				element.insertAdjacentHTML("afterbegin", elementArray[i].elementText + user);
@@ -104,13 +118,17 @@ function loggedIn() {
 function loggedOut() {
 	domManipulation(hamArray, headerContainer);
 	domManipulation(loginPageArray, contentContainer);
+	loginBtn.addEventListener("click", () => {
+		let findUser = userArray.find(findUser => findUser.username === getUserName.value)
+		if (findUser && findUser.userPassword === getPassword.value) {
+			console.log("user found", findUser.username);
+			localStorage.setItem("loginState", "isLoggedIn");
+			reloadLogInStatus(localStorage.getItem("loginState"));
+		} else {
+			console.log("error! wrong credentials!!!");
+		}
+	});
 }
-
-//if (localStorage.getItem("loggedIn") === null) {
-//	loggedOut();
-//} else if (localStorage.getItem("loggedIn") === "isLoggedIn") {
-//	loggedIn();
-//}
 
 function reloadLogInStatus(loggInToken) {
 	if (loggInToken === null) {
@@ -122,27 +140,14 @@ function reloadLogInStatus(loggInToken) {
 
 reloadLogInStatus(localStorage.getItem("loginState"));
 
-//loginBtn.addEventListener {
-//	for (i in users) {
-		//double check my bondalizer program for inspiration
-//		if (inputUserName.value == users[i].userName &&
-//		inputPass.value == users[i].userPass) {
-//			localStorrage.setItem("state", loggedIn);
-//			reloadLogInStatus();
-//		} else {
-//			prompt("error, user or password not found")
-//		}
-//	}
-//}
-
-function logOutBtn(){
+//function logOutBtn(){
 //	localStorage.clear("state)"
 //	reloadLogInStatus
-}
+//}
 
-function addUserBtn() {
+//function addUserBtn() {
 	//load another dom with import fields, ending with an "addUserBtn"
-}
+//}
 
 //loginBtn.addEventListener {
 	//edit local storrage with new object array, containing new user credentials
