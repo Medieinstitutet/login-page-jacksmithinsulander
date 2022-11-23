@@ -125,6 +125,14 @@ body{
 	display:none;
 }
 
+.container__form--errorhidden{
+	display:none;
+}
+
+.container__form--error{
+	color:#830e10;
+}
+
 .container__form--buttons{
 	width:20%;
 	height:3rem;
