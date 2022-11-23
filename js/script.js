@@ -110,11 +110,6 @@ function domManipulation(elementArray, container) {
 				for (fields in elementArray[i].elementInputFields) {
 					element.innerHTML += elementArray[i].elementInputFields[fields];
 				}
-				let loginBtn = document.getElementById("loginBtn");
-				let newUserBtn = document.getElementById("newUserBtn");
-				let getUserName = document.getElementById("getUserName");
-				let getPassword = document.getElementById("getPassword");
-				let newUserAddBtn = document.getElementById("newUserAddBtn");
 				break;
 			case "greeting":
 				element.innerHTML = elementArray[i].elementText + localStorage.getItem("loggedInUser");
@@ -132,6 +127,7 @@ function loggedIn() {
 	domManipulation(hamArray, headerContainer);
 	domManipulation(loggedInArray, contentContainer);
 	contentContainer.className = "content";
+	const toLogout = document.getElementById("toLogout");
 	toLogout.addEventListener("click", () => {
 		localStorage.removeItem("loggedInUser");
 		localStorage.removeItem("loginState");
@@ -145,11 +141,14 @@ function loggedOut() {
 	headerContainer.innerHTML = "";
 	domManipulation(hamArray, headerContainer);
 	let toLogin = document.getElementById("toLogin");
-	toLogin.addEventListener("click", () => {
+	toLogin.addEventListener("click", () => {	
 		contentContainer.innerHTML = "";
 		domManipulation(loginPageArray, contentContainer);
 		contentContainer.className = "content";
+		const loginBtn = document.getElementById("loginBtn");
+		let getUserName = document.getElementById("getUserName");
 		loginBtn.addEventListener("click", () => {
+			let getPassword = document.getElementById("getPassword");
 			let findUser = userArray.find(findUser => findUser.username === getUserName.value)
 			if (findUser && findUser.userPassword === getPassword.value) {
 				localStorage.setItem("loginState", "isLoggedIn");
@@ -159,7 +158,9 @@ function loggedOut() {
 				alert("error! wrong credentials!!!");
 			}
 		})
+		let newUserBtn = document.getElementById("newUserBtn");
 		newUserBtn.addEventListener("click", () => {
+			let newUserAddBtn = document.getElementById("newUserAddBtn");
 			document.getElementsByClassName("container__title")[0].innerHTML = "Add new user";
 			document.getElementById("userLabel").innerHTML = "New User Name: ";
 			document.getElementById("passLabel").innerHTML = "New Password: ";
