@@ -152,33 +152,35 @@ function loggedOut() {
 		loginBtn.addEventListener("click", () => {
 			let findUser = userArray.find(findUser => findUser.username === getUserName.value)
 			if (findUser && findUser.userPassword === getPassword.value) {
-				console.log("user found", findUser.username);
 				localStorage.setItem("loginState", "isLoggedIn");
 				localStorage.setItem("loggedInUser", findUser.username);
 				reloadLogInStatus(localStorage.getItem("loginState"));
 			} else {
-				console.log("error! wrong credentials!!!");
+				alert("error! wrong credentials!!!");
 			}
 		})
 		newUserBtn.addEventListener("click", () => {
-			console.log("tjenis");
 			document.getElementsByClassName("container__title")[0].innerHTML = "Add new user";
 			document.getElementById("userLabel").innerHTML = "New User Name: ";
 			document.getElementById("passLabel").innerHTML = "New Password: ";
 			newUserAddBtn.className = "container__form--buttons";
 			newUserBtn.remove();
 			loginBtn.remove();
+			getUserName.id = "newUserName";
+			getPassword.id = "newUserPassword";
+			newUserName = document.getElementById("newUserName");
+			newUserPassword = document.getElementById("newUserPassword");
 			newUserAddBtn.addEventListener("click", () => {
-				getUserName.id = "newUserName";
-				getPassword.id = "newUserPassword";
-				newUserName = document.getElementById("newUserName");
-				newUserPassword = document.getElementById("newUserPassword");
-				userArray.push({"username": newUserName.value,"userPassword": newUserPassword.value})
-				localStorage.removeItem("usersString");
-				let newUsersStringified = JSON.stringify(userArray);
-				localStorage.setItem("usersString", newUsersStringified);
-				reloadLogInStatus(localStorage.getItem("loginState"));
-				contentContainer.className = ""
+				if (!newUserName.value || !newUserPassword.value) {
+					alert("hey! u messed up!")
+				} else {
+					userArray.push({"username": newUserName.value,"userPassword": newUserPassword.value})
+					localStorage.removeItem("usersString");
+					let newUsersStringified = JSON.stringify(userArray);
+					localStorage.setItem("usersString", newUsersStringified);
+					reloadLogInStatus(localStorage.getItem("loginState"));
+					contentContainer.className = ""
+				}
 			})
 		})
 	})
