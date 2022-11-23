@@ -43,9 +43,9 @@ let loginPageArray = [
 		"elementClassName": "container__form",
 		"elementPurpose": "loginForm",
 		"elementInputFields": [
-			"<label id='userLabel' class='container__form--labels'>User Name </label>",
+			"<label id='userLabel' class='container__form--labels'>User Name </label><br><br>",
 			"<input type='text' id='getUserName' class='container__form--inputs'></input><br><br>",
-			"<label id='passLabel' class='container__form--labels'>Password </label>",
+			"<label id='passLabel' class='container__form--labels'>Password </label><br><br>",
 			"<input type='text' id='getPassword' class='container__form--inputs'></input><br><br>",
 			"<button type='button' id='loginBtn' class='container__form--buttons'>Log In!</button>",
 			"<button type='button' id='newUserBtn' class='container__form--buttons'>Add New User?</button>",
