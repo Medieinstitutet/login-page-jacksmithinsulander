@@ -49,7 +49,9 @@ let loginPageArray = [
 			"<input type='text' id='getPassword' class='container__form--inputs'></input><br><br>",
 			"<button type='button' id='loginBtn' class='container__form--buttons'>Log In!</button>",
 			"<button type='button' id='newUserBtn' class='container__form--buttons'>Add New User?</button>",
-			"<button type='button' id='newUserAddBtn' class='container__form--buttonhidden'>Add New User!</button>"
+			"<button type='button' id='newUserAddBtn' class='container__form--buttonhidden'>Add New User!</button>",
+			"<div id='loginError' class='container__form--errorhidden'>Error! wrong credentials!!!</div>",
+			"<div id='newUserAddError' class='container__form--errorhidden'>Hey! U messed up! Input field(s) empty!</div>"
 		]	
 	}
 ]
@@ -155,7 +157,8 @@ function loggedOut() {
 				localStorage.setItem("loggedInUser", findUser.username);
 				reloadLogInStatus(localStorage.getItem("loginState"));
 			} else {
-				alert("error! wrong credentials!!!");
+				let loginError = document.getElementById("loginError");
+				loginError.className = "container__form--error";
 			}
 		})
 		let newUserBtn = document.getElementById("newUserBtn");
@@ -173,7 +176,8 @@ function loggedOut() {
 			newUserPassword = document.getElementById("newUserPassword");
 			newUserAddBtn.addEventListener("click", () => {
 				if (!newUserName.value || !newUserPassword.value) {
-					alert("hey! u messed up!")
+					let newUserAddError = document.getElementById("newUserAddError");
+					newUserAddError.className = "container__form--error";
 				} else {
 					userArray.push({"username": newUserName.value,"userPassword": newUserPassword.value})
 					localStorage.removeItem("usersString");
