@@ -103,25 +103,59 @@ body{
 }
 
 .snow{
-	position: absolute;
-	height: 92vh;
-	width: 100vw;
+	position:absolute;
+	height:92vh;
+	width:100vw;
 	overflow: hidden;
-	background-image: url("../img/snow1.webp"), 
+	background-image:url("../img/snow1.webp"), 
 	url("../img/snow2.webp"), 
 	url("../img/snow3.webp");
-    	animation: snow 20s linear  infinite ;
+    	animation:snow 20s linear  infinite ;
 	}
-	@keyframes snow {
-	0% {
-		background-position: 0px 0px, 0px 0px, 0px 0px;
+	@keyframes snow{
+	0%{
+		background-position:0px 0px, 0px 0px, 0px 0px;
     	} 100% {
-		background-position: 500px 1000px, 400px 400px, 300px 300px;
+		background-position:500px 1000px, 400px 400px, 300px 300px;
 	}
 }
 
 .container__form--buttonhidden{
 	display:none;
+}
+
+.container__form--buttons{
+	width:20%;
+	height:3rem;
+	border-radius:1rem;
+	background-color:#830e10;
+	color:#e9e5e1;
+	border:none;
+	cursor:pointer;
+	box-shadow:0 0.5rem 1rem #303a43;
+	transform:translateY(-0.5rem);
+	transition:all 0.3s;
+	margin:10px;
+}
+
+.container__form--buttons:active{
+	background-color:#1f3102;
+	transform:translateY(-0.2rem);
+	box-shadow:0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+.container__form--inputs{
+	width:40%;
+	border:none;
+	outline:none;
+	height:100%;
+	padding:0 3rem;
+	font-size:1.2rem;
+	border-bottom:4px solid #303a43;
+	box-shadow:0 0.5rem 1rem #303a43;
+	transition:all 0.3s;
+	background:linear-gradient(to right bottom, #e9e5e1,#fedfb0);
+	border-radius:1rem;
 }
 
 .footer{
