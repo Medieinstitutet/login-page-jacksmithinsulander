@@ -6,4 +6,4 @@ username: ted \
 password: industrialrevolution123 \
 user 3 \
 username: satoshi \
-password: ciahoneypot \
+password: ciahoneypot 
